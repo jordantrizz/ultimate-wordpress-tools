@@ -53,7 +53,7 @@ echo "option_key: $option_key"
 echo "option_value: $option_value"
 echo "wp_cli_options: $wp_cli_options"
 
-wp ${wp_cli_options} get ${option_name} --format=json | php -r "
+wp ${wp_cli_options} option get ${option_name} --format=json | php -r "
 \$option = json_decode( fgets(STDIN) );
 \$option->${option_key} = \"${option_value}\";
 print json_encode(\$option);
