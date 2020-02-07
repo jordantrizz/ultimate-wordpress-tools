@@ -57,7 +57,7 @@ echo -e "\n"
 wp ${wp_cli_options} option get ${option_name} --format=json | php -r "
 \$option = json_decode( fgets(STDIN) );
 \$option->${option_key} = \"${option_value}\";
-print json_encode(\$option);"
+print_r(\$option);"
 echo -e "\n"
 
 read -p "Are you sure you want to insert the above? " -n 1 -r
