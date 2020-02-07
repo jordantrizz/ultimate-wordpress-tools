@@ -53,12 +53,12 @@ echo "option_key: $option_key"
 echo "option_value: $option_value"
 echo "wp_cli_options: $wp_cli_options"
 
-echo "\n"
+echo -e "\n"
 wp ${wp_cli_options} option get ${option_name} --format=json | php -r "
 \$option = json_decode( fgets(STDIN) );
 \$option->${option_key} = \"${option_value}\";
 print json_encode(\$option);"
-echo "\n"
+echo -e "\n"
 
 read -p "Are you sure you want to insert the above? " -n 1 -r
 echo    # (optional) move to a new line
