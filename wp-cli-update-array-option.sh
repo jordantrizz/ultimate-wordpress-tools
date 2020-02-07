@@ -56,5 +56,15 @@ echo "wp_cli_options: $wp_cli_options"
 wp ${wp_cli_options} option get ${option_name} --format=json | php -r "
 \$option = json_decode( fgets(STDIN) );
 \$option->${option_key} = \"${option_value}\";
-print json_encode(\$option);
-" | wp ${wp_cli_options} option set ${option_name} --format=json
+print json_encode(\$option);"
+
+read -p "Are you sure? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	wp ${wp_cli_options} option get ${option_name} --format=json | php -r "
+	\$option = json_decode( fgets(STDIN) );
+	\$option->${option_key} = \"${option_value}\";
+	print json_encode(\$option);
+	" | wp ${wp_cli_options} option set ${option_name} --format=json
+fi
